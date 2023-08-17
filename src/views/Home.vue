@@ -1,7 +1,50 @@
 <template>
-  <HelloWorld />
+  <v-container class="fill-height">
+    <v-responsive class="align-center text-center fill-height justify-center">
+      <v-sheet width="900" class="mx-auto">
+        <v-card-text>
+          <Characters/>
+          <v-expand-transition>
+            <Clothes v-if="isCharacter"/>
+          </v-expand-transition>
+          <v-expand-transition>
+          <v-row v-if="isCharacter && isCloth">
+            <!-- 캐릭터 -->
+            <v-col>
+              <v-sheet color="primary" width="300" height="300"/>
+            </v-col>
+            <!-- 염색 부위 -->
+            <v-col>
+              <ColorPicker/>
+              <ColorPicker/>
+              <ColorPicker/>
+            </v-col>
+          </v-row>
+          </v-expand-transition>
+        </v-card-text>
+      </v-sheet>
+    </v-responsive>
+  </v-container>
 </template>
 
 <script lang="ts" setup>
-  import HelloWorld from '@/components/HelloWorld.vue'
+  import Characters from "@/components/Characters.vue";
+  import Clothes from "@/components/Clothes.vue";
+  import {useAppStore} from "@/store/app";
+  import {ref, Ref, watch} from "vue";
+  import {storeToRefs} from "pinia";
+  import ColorPicker from "@/components/ColorPicker.vue";
+
+  const store = useAppStore()
+  const {character, cloth} = storeToRefs(store)
+
+  const isCharacter:Ref<boolean> = ref(false)
+  watch(() => character.value, (newVal) => {
+    isCharacter.value = !!newVal
+  })
+
+  const isCloth:Ref<boolean> = ref(false)
+  watch(() => cloth.value, (newVal) => {
+    isCloth.value = !!newVal
+  })
 </script>
