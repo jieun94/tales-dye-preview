@@ -11,13 +11,13 @@
           <v-row v-if="isCharacter && isCloth">
             <!-- 캐릭터 -->
             <v-col>
-              <v-sheet color="primary" width="300" height="300"/>
+              <v-img src="@/assets/images/side.png"/>
             </v-col>
             <!-- 염색 부위 -->
             <v-col>
               <ColorPicker label="머리"/>
-              <ColorPicker/>
-              <ColorPicker/>
+              <ColorPicker label="치마"/>
+              <ColorPicker label="저고리"/>
             </v-col>
           </v-row>
           </v-expand-transition>

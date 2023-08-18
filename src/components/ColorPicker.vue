@@ -3,7 +3,7 @@
     <template #activator="{props}">
       <v-row>
         <v-col cols="auto" style="min-width: 200px">
-          <v-text-field v-model="color" density="compact" variant="outlined" :label="prop.label" v-bind="props" hint="" :persistent-hint="true">
+          <v-text-field v-model="color" density="compact" variant="outlined" :label="prop.label" v-bind="props" :hint="hexToRgb(color)" :persistent-hint="true">
             <template #append-inner>
               <v-sheet v-bind="props" width="30" height="30" rounded="circle" :color="color"/>
             </template>
@@ -27,6 +27,11 @@ const prop = defineProps({
     required: true
   }
 })
+
+function hexToRgb(hex) {
+  const result:RegExpExecArray = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result ? 'R: '+parseInt(result[1], 16)+'  G: '+parseInt(result[2], 16)+'  B: '+parseInt(result[3], 16): null;
+}
 </script>
 
 <style scoped>
