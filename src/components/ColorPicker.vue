@@ -3,7 +3,7 @@
     <template #activator="{props}">
       <v-row>
         <v-col cols="auto" style="min-width: 200px">
-          <v-text-field v-model="color" density="compact" variant="outlined" v-bind="props" hide-details>
+          <v-text-field v-model="color" density="compact" variant="outlined" :label="prop.label" v-bind="props" hint="" :persistent-hint="true">
             <template #append-inner>
               <v-sheet v-bind="props" width="30" height="30" rounded="circle" :color="color"/>
             </template>
@@ -21,6 +21,12 @@ import {ref, Ref} from "vue";
 let isPicker:Ref<boolean> = ref(false)
 const color:Ref<string> = ref('#000000')
 
+const prop = defineProps({
+  label: {
+    type: String,
+    required: true
+  }
+})
 </script>
 
 <style scoped>

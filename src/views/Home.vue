@@ -15,7 +15,7 @@
             </v-col>
             <!-- 염색 부위 -->
             <v-col>
-              <ColorPicker/>
+              <ColorPicker label="머리"/>
               <ColorPicker/>
               <ColorPicker/>
             </v-col>
